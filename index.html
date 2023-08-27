@@ -20,7 +20,7 @@
             const resultElement = document.getElementById("result");
             
             try {
-                const response = await fetch(`https://wassupfella.github.io/maliciousurlcheck/`);
+                const response = await fetch(`http://wassup.pythonanywhere.com/`);
                 const data = await response.json();
                 resultElement.textContent = data.result;
             } catch (error) {
