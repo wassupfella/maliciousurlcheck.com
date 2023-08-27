@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Malicious URL Checker</title>
+</head>
+<body>
+    <h1>Malicious URL Checker</h1>
+    <form id="urlForm">
+        <label for="url">Enter URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Check URL</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("urlForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            const url = document.getElementById("url").value;
+            const resultElement = document.getElementById("result");
+            
+            try {
+                const response = await fetch(`/check?url=${encodeURIComponent(url)}`);
+                const data = await response.json();
+                resultElement.textContent = data.result;
+            } catch (error) {
+                resultElement.textContent = "An error occurred while checking the URL.";
+            }
+        });
+    </script>
+</body>
+</html>
